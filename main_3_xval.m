@@ -1,6 +1,6 @@
 clt;
 load('_config.mat')
-load(savename.train_fs);
+load(sav.train_fs);
 
 %Classifier Testing by Crossvalidation
 b(1).name = 'knn';   b(1).options.k = 3;                              % KNN with 3 neighbors
@@ -21,6 +21,6 @@ display('PCA Xval')
 [pca_xval_p,pca_xval_ci] = Bev_crossval(X_pca,d_train,op);            % cross valitadion
 warning('on','all')
 
-display(['SFS/PCA Crossvalidation for ' int2str(config.nfeat) ' features']);
-[ sfs_xval_p pca_xval_p ]
+display(['SFS/PCA Crossvalidation for ' int2str(cfg.nfeat) ' features']);
+%[ sfs_xval_p pca_xval_p ]
 

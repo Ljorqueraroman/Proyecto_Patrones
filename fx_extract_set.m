@@ -1,4 +1,4 @@
-function [ X_raw, Xn_raw, d] = ...
+function [ X_raw, Xn_raw, d, id_list] = ...
   fx_extract_set(  data_range,name_function, location, seg_method )
 %MAIN_FX Summary of this function goes here
 %   Detailed explanation goes here
@@ -7,11 +7,11 @@ function [ X_raw, Xn_raw, d] = ...
   end
     
   disp('Finding images...');
-  [image_paths_train,d] = ...
+  [image_paths,d,id_list] = ...
     dm_path_list(data_range,name_function,location);
   
   disp('Extracting features...');
-  [X_raw,Xn_raw] = fx_extract_features(image_paths_train,seg_method);
+  [X_raw,Xn_raw] = fx_extract_features(image_paths,seg_method);
   
 end
 

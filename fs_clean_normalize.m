@@ -16,9 +16,6 @@ function [ Y, Yn, norm ] = fs_clean_normalize( X, Xn )
   norm.s = s;
   Y = X(:,s);
   [Y,norm.a,norm.b] = Bft_norm(Y,1);
-  
-  
   Yn = Xn(s,:);
-
 end
 
