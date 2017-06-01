@@ -1,0 +1,6 @@
+# Ignore Images
+*.png
+# Ignore mat files
+*.mat
+# Ignore autosaves
+*.asv
