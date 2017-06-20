@@ -1,4 +1,10 @@
 %t es el contador de las filas
+%options     
+%     options.vdiv = 1;                  % one vertical divition
+%     options.hdiv = 1;                  % one horizontal divition
+%     options.semantic = 0;              % classic LBP
+%     options.samples  = 8;              % number of neighbor samples
+%     options.mappingtype = 'u2';        % uniform LBP
 function [Z] = add_info_to_z(I, t, options, face_landmarks, Z)
     [X,Xn,op] = Bfx_lbp(I,options);
     J = op.Ilbp;
