@@ -10,7 +10,7 @@ disp('Extracting features from the whole set...')
 [ X_raw, Xn_raw, d_raw, id_raw ] = ...
   fx_extract_set(range , @dm_name_function, cfg.loc , cfg.seg_method);
 
-%if (config.wanna_save)
-%  save( sav.fx_all, 'X_raw', 'Xn_raw', 'd_raw','id_raw');
-%  disp(['Saved training features to ' sav.fx_all]);
-%end
+if (config.wanna_save)
+  save( sav.fx_all, 'X_raw', 'Xn_raw', 'd_raw','id_raw');
+  disp(['Saved training features to ' sav.fx_all]);
+end
