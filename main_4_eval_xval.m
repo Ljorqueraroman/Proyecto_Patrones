@@ -9,7 +9,9 @@ b(3).name = 'knn';   b(3).options.k = 7;                              % KNN with
 b(4).name = 'knn';   b(4).options.k = 9;                              % KNN with 9 neighbors
 b(5).name = 'lda';   b(5).options.p = [];                             % LDA
 b(6).name = 'qda';   b(6).options.p = [];                             % QDA
-b(7).name = 'dmin';  b(7).options = [];                               % Euclidean distance
+b(7).name = 'dmin';  b(7).options = [];
+b(8).name = 'nnglm'; b(8).options.method = 3; b(8).options.iter = 1;
+% Euclidean distance
 op = b;
 
 
@@ -23,7 +25,7 @@ for i = 1:length(X_xval_pca)
   p_pca(:,i) = Bev_performance(d_pca,d_test);
 end
 
-classifiers = {'knn-3';'knn-5';'knn-7';'knn-9';'LDA';'QDA';'dMin'};
+classifiers = {'knn-3';'knn-5';'knn-7';'knn-9';'LDA';'QDA';'dMin';'nnglm';};
 columns     = {'Classifier';'Fold_1';'Fold_2';'Fold_3';'Fold_4';'Mean'};
 P = num2cell(mean(p_pca,2)*100);
 p_pca2 = num2cell(p_pca*100);

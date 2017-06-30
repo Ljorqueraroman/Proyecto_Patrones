@@ -1,4 +1,4 @@
-clt;
+%clt;
 load('_config.mat');
 load(sav.fx_xval);
 
@@ -37,7 +37,10 @@ Z_xval_pca = cell(size(X_xval));
 
 h = waitbar(0,'Selecting PCA Features...');
 for i = 1:length(X_xval_norm)
+  X_xval_norm{i}(isnan(X_xval_norm{i})) = 0 ;
   [pca.X, pca.lambda ,pca.A, pca.Xs ] = Bft_pca(X_xval_norm{i},cfg.nfeat);
+  %[pca.X, pca.A, pca.lambda, pca.Xs ] = Bft_pcr(X_xval_norm{i},d_xval_train{i},cfg.nfeat);
+  %[pca.X, pca.lambda ,pca.A, pca.Xs ] = Bft_plsr(X_xval_norm{i},d_xval_train{i},cfg.nfeat);
   X_xval_pca{i} = pca.X;            
   Z_xval_pca{i} = fs_pca_transform(Z_xval_norm{i},pca.A,cfg.nfeat);
   
