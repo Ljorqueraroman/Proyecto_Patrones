@@ -15,9 +15,10 @@ function [ path ] = dm_image_path...
   if strcmp(location,'')
     location = 'data\';	
   end
-  name = name_function(image_meta_data);
+  name = dm_name_function(image_meta_data);
   path = strcat(location,name);
-  if exist(path,'file') == 0
+  
+  if ~exist(path,'file')
     path = '';
   end
 end

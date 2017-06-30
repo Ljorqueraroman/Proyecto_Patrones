@@ -29,6 +29,7 @@ function [ image_paths, d, id_list ] = dm_path_list ( range_data, name_function,
       image_data.class = class;
       image_data.id = id;
       image_paths{index} = dm_image_path(image_data,name_function,location);
+      
       if strcmp(image_paths{index},'')
         break;
       else
@@ -37,11 +38,11 @@ function [ image_paths, d, id_list ] = dm_path_list ( range_data, name_function,
         index           = index + 1;
       end
     end
-    
     progress = (class - class_start)/(class_end - class_start);
     waitbar(progress,h,strcat('Finding images:  ',sprintf('%.0f%%',100*progress)))
+    
   end
-  close(h)
+  close(h);
   
   d = d(1:index-1);
   id_list = id_list(1:index-1);

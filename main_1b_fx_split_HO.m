@@ -10,9 +10,9 @@ dtr_ho    = d_raw(id_raw    <=  n_hold_out);
 idr_ho    = id_raw(id_raw   <=  n_hold_out);
 Xn_ho     = Xn_raw;
 
-Z_ho      = X_raw(id_raw    >   n_hold_out, :);
-dte_ho    = d_raw(id_raw    >   n_hold_out);
-ide_ho    = id_raw(id_raw   >   n_hold_out);
+Z_ho      = X_raw(id_raw    ==   n_hold_out+1, :);
+dte_ho    = d_raw(id_raw    ==   n_hold_out+1);
+ide_ho    = id_raw(id_raw   ==   n_hold_out+1);
 
 
 if (cfg.wanna_save)
