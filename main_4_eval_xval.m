@@ -54,9 +54,10 @@ T = table(categorical(classifiers),...
 
 C = cell(1,n_folds);   
 [~,argmax] = max(P{1});
+d_pred = cell(1,n_folds);   
 for i = 1:n_folds
-  d_pred = d_pca{i}(:,argmax);
-  C{i} = confusionmat(d_test{i},d_pred);
+  d_pred{i} = d_pca{i}(:,argmax);
+  C{i} = confusionmat(d_test{i},d_pred{i});
 end
 
 save('_classified_xval.mat','d_pred','d_test','C','T','p_pca');
