@@ -23,6 +23,12 @@ function [ segments ] = ip_get_segments(I, method)
     for i = 1:n_part_v*n_part_h;
       lim(i,:) = [ v+dv*rem((i-1),n_part_v) h+dh*floor((i-1)/n_part_v)];
     end
+  elseif strcmp(method,'landmarks')
+    detector = 'ZhuRamanan';
+    fidu_XY = [];
+    I_Q = cat(3, I, I, I);
+    facial_feature_detection;
+    lim = [y1 y2 x1 x2];
   else
     lim = [1 I_size(1) 1 I_size(2)];
   end

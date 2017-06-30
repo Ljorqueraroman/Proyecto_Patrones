@@ -1,5 +1,5 @@
 function [ X_raw, Xn_raw, d, id_list] = ...
-  fx_extract_set(  data_range, name_function, location, seg_method )
+  fx_extract_set(  data_range,name_function, location, seg_method )
 %MAIN_FX Summary of this function goes here
 %   Detailed explanation goes here
   if strcmp(seg_method,'')

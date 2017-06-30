@@ -3,19 +3,25 @@ function [ X, Xn ] = fx_extract_features( image_paths, seg_method )
 %   Detailed explanation goes here
   fx.vdiv = 1;
   fx.hdiv = 1;
-  fx.dhar = 1;
+  fx.dhar = 3;
   
-  [ opLBPu, opLBPri, opHara ] = fx_params( fx );
+  [ opLBPu, opHara, opHoG, opGabor ] = fx_params( fx );
  
   if ~isempty(image_paths)
     I = imread(image_paths{1});
     seg = ip_get_segments(I,seg_method);
     n_seg = length(seg);
+    I(isnan(I)) = 0 ;
     
     [~,XnLBPu] = Bfx_lbp(I,[],opLBPu);
-    [~,XnLBPri] = Bfx_lbp(I,[],opLBPri);
-    [~,XnHar] = Bfx_haralick(I,[],opHara);
-    Xnseg = [XnLBPu; XnLBPri; XnHar];
+    %[~,XnLBPri] = Bfx_lbp(I,[],opLBPri);
+    [~,XnHoG] = Bfx_hog(I,[],opHoG);
+    [~,XnGabor] = Bfx_gabor(I,opGabor);
+    %[~,XnHar] = Bfx_haralick(I,[],opHara);
+    %Xnseg = [XnLBPu; XnLBPri; XnHar];
+    Xnseg = [XnLBPu; XnHoG; XnGabor];
+    %Xnseg = [XnLBPu; XnHoG];
+    %Xnseg = XnLBPu;
     size_Xnseg = size(Xnseg);
     
     Xn = zeros(size_Xnseg(1)*n_seg, size_Xnseg(2)+4);
@@ -32,22 +38,28 @@ function [ X, Xn ] = fx_extract_features( image_paths, seg_method )
     display('No image paths were given');
     return;
   end
-  
+
   h = waitbar(0,'Extracting Features...');
   for i = 1:length(image_paths)
     I = imread(image_paths{i});
     
     %debe ser horizontal
     partitions = ip_get_segments(I,seg_method);
+    %partitions = I;
     
     index = 1;
     
     for j = 1:length(partitions)
       I2 = partitions{j};
       XLBPu = Bfx_lbp(I2,[],opLBPu);
-      XLBPri = Bfx_lbp(I2,[],opLBPri);
-      XHar = Bfx_haralick(I2,[],opHara);
-      Xseg = [ XLBPu XLBPri XHar];
+      %XLBPri = Bfx_lbp(I2,[],opLBPri);
+      XHoG = Bfx_hog(I2,opHoG);
+      XGabor = Bfx_gabor(I2,opGabor);
+      %XHar = Bfx_haralick(I2,[],opHara);
+      %Xseg = [ XLBPu XLBPri XHar];
+      Xseg = [ XLBPu XHoG XGabor];
+      %Xseg = [ XLBPu XHoG];
+      %Xseg = XLBPu;
       X(i,index:index+length(Xseg)-1) = Xseg;
       index = index + length(Xseg);
     end

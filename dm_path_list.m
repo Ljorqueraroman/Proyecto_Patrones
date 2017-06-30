@@ -23,26 +23,22 @@ function [ image_paths, d, id_list ] = dm_path_list ( range_data, name_function,
   
   
   index = 1;
-  h = waitbar(0,'Finding images.');
+  errors = 0;
   for class = class_start:class_end;
     for id = id_start:id_end;
       image_data.class = class;
       image_data.id = id;
       image_paths{index} = dm_image_path(image_data,name_function,location);
+      
       if strcmp(image_paths{index},'')
-        break;
+        errors = errors+1;
       else
         d(index)        = class;
         id_list(index)  = id;
         index           = index + 1;
       end
     end
-    
-    progress = (class - class_start)/(class_end - class_start);
-    waitbar(progress,h,strcat('Finding images:  ',sprintf('%.0f%%',100*progress)))
   end
-  close(h)
-  
   d = d(1:index-1);
   id_list = id_list(1:index-1);
   image_paths = image_paths(~cellfun('isempty',image_paths));
