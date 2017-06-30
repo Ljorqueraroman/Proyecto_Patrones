@@ -59,5 +59,5 @@ for i = 1:n_folds
   C{i} = confusionmat(d_test{i},d_pred);
 end
 
-save('classified_xval.mat','d_pred','d_test','C','T','p_pca');
+save('_classified_xval.mat','d_pred','d_test','C','T','p_pca');
 warning('on','all')

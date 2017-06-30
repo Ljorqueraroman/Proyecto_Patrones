@@ -15,3 +15,15 @@ end
 imshow(C_norm{1}, 'InitialMagnification',300)
 colormap(flipud(bone))
 
+CI = zeros(size(p_pca,1),1);
+for i = 1:size(p_pca,1)
+  x = p_pca(i,:);
+  SEM = std(x)/sqrt(length(x));               % Standard Error
+  ts = tinv([0.025  0.975],length(x)-1);      % T-Score
+  %CI = mean(x) + ts*SEM;                      % Confidence Intervals
+  disp([x SEM ts])
+  CI(i) = ts(2)*SEM;
+end
+
+
+

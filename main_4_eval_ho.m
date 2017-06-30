@@ -38,5 +38,5 @@ colormap(flipud(pink))
 %colormap(flipud(parula))
 %colormap(flipud(hot))
 
-save('classified_ho.mat','d_pred','d_test','C','T');
+save('_classified_ho.mat','d_pred','d_test','C','T');
 warning('on','all')
