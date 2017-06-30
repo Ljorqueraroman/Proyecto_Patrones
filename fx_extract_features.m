@@ -38,8 +38,10 @@ function [ X, Xn ] = fx_extract_features( image_paths, seg_method )
     display('No image paths were given');
     return;
   end
-
-  h = waitbar(0,'Extracting Features...');
+  
+  h = waitbar(0,strcat('Extracting Features: ',...
+      '0/',int2str(length(image_paths)),...
+      ' [',sprintf('%.0f%%',0),']'));
   for i = 1:length(image_paths)
     I = imread(image_paths{i});
     
@@ -64,7 +66,9 @@ function [ X, Xn ] = fx_extract_features( image_paths, seg_method )
       index = index + length(Xseg);
     end
     progress = i/length(image_paths);
-    waitbar(progress,h,strcat('Extracting Features...',sprintf('%.0f%%',100*progress)))
+    waitbar(progress,h,strcat('Extracting Features: ',...
+      int2str(i),'/',int2str(length(image_paths)),...
+      ' [',sprintf('%.0f%%',100*progress),']'))
   end
   close(h)
   

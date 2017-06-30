@@ -27,5 +27,16 @@ p_pca2 = num2cell(p_pca*100);
 T = table(categorical(classifiers),p_pca2(:,1),...
           'VariableNames',columns)
 
+[~,argmax] = max(p_pca);
+d_pred = d_pca(:,argmax);
+C = confusionmat(d_test,d_pred);
+imshow(C, 'InitialMagnification',300)
 
+%colormap(flipud(jet))
+colormap(flipud(pink))
+%colormap(flipud(copper))
+%colormap(flipud(parula))
+%colormap(flipud(hot))
+
+save('classified_ho.mat','d_pred','d_test','C','T');
 warning('on','all')

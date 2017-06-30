@@ -1,5 +1,6 @@
 clt;
 load('_config.mat');
+warning('off','all')
 
 range.class_start    = 1;
 range.class_end      = 143;

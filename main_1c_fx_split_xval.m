@@ -50,6 +50,6 @@ Xn_xval = Xn_raw;
 
 if (cfg.wanna_save)
   save(sav.fx_xval, 'X_xval', 'Xn_xval', 'd_xval', 'id_xval');
-  disp(['Saved HO split features to ' sav.fx_xval]);
+  disp(['Saved cross-val split features to ' sav.fx_xval]);
 end
 

@@ -11,7 +11,7 @@ sav.fx_all     = '_fx_all.mat';
 sav.fx_ho      = '_fx_ho.mat';
 sav.fx_xval    = '_fx_xval.mat';
 sav.fs_ho_pca  = '_fs_ho_pca.mat';
-sav.fs_xval_pca  = '_fs_ho_pca.mat';
+sav.fs_xval_pca  = '_fs_xval_pca.mat';
 
 save( configfile, 'cfg', 'sav' );
 disp('Saved new configuration');
